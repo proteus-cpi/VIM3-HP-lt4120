@@ -1,6 +1,6 @@
 # VIM3-HP-lt4120 setup
 
-Notes on setting up a lt4120 Cellular Modem (HP lt4120 Snapdragon X5 LTE) on Khadas VIM3
+Mostly notes to self on setting up a lt4120 Cellular Modem (HP lt4120 Snapdragon X5 LTE) on Khadas VIM3
 
 ## Steps
 
