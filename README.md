@@ -68,6 +68,15 @@ LABEL="mbim_to_qmi_rules_end"
  ```
  sudo qmicli --device=/dev/cdc-wdm0 --device-open-proxy --wds-start-network="ip-type=4,apn=TPG" --client-no-release-cid
  ```
+ Received
+ ```
+ [/dev/cdc-wdm0] Network started
+	Packet data handle: '68260848'
+[/dev/cdc-wdm0] Client ID not released:
+	Service: 'wds'
+	    CID: '26'
+```
+
  10. Check if the interface is up
  ```
  ifconfig -a
@@ -77,6 +86,16 @@ LABEL="mbim_to_qmi_rules_end"
  sudo apt install udhcpc
  sudo udhcpc -q -f -n -i wwan0
  ```
+ Received:
+ ```
+ udhcpc: started, v1.27.2
+udhcpc: sending discover
+udhcpc: sending select for 10.11.12.200
+udhcpc: lease of 10.11.12.200 obtained, lease time 7200
+ip: RTNETLINK answers: File exists
+/etc/resolvconf/update.d/libc: Warning: /etc/resolv.conf is not a symbolic link to /run/resolvconf/resolv.conf
+```
+
  12. Verify if the interface got an IP
  ```
  ifconfig -a
