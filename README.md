@@ -44,7 +44,48 @@ ATTR{new_id}="03f0 9d1d"
 LABEL="mbim_to_qmi_rules_end"
 ##################################################################
 ```
-See "https://bugs.launchpad.net/ubuntu/+source/network-manager/+bug/1574582/comments/9"
+  See "https://bugs.launchpad.net/ubuntu/+source/network-manager/+bug/1574582/comments/9"
+  
+  Follow the steps in https://techship.com/faq/how-to-step-by-step-set-up-a-data-connection-over-qmi-interface-using-qmicli-and-in-kernel-driver-qmi-wwan-in-linux/
 
-5. 
+ 5. Check if the modem is recognized by modem manager
+ ```
+ sudo mmcli -L
+ ```
+ 6. Display details of modem
+ ```
+ sudo mmcli -m 0
+ ```
+ 7. Check the data format expected by the host (VIM3)
+ ```
+ sudo qmicli --device=/dev/cdc-wdm0 --get-expected-data-format
+ ```
+ 8. Check the data format configured in the modem
+ ```
+ sudo qmicli --device=/dev/cdc-wdm0 --device-open-proxy --wda-get-data-format
+ ```
+ 9. Try to set up a connection
+ ```
+ sudo qmicli --device=/dev/cdc-wdm0 --device-open-proxy --wds-start-network="ip-type=4,apn=TPG" --client-no-release-cid
+ ```
+ 10. Check if the interface is up
+ ```
+ ifconfig -a
+ ```
+ 11. Get IP address through DHCP
+ ```
+ sudo apt install udhcpc
+ sudo udhcpc -q -f -n -i wwan0
+ ```
+ 12. Verify if the interface got an IP
+ ```
+ ifconfig -a
+ ```
+ 13. Check the link
+ ```
+ ping -I wwan0 8.8.8.8
+ ```
+ 
+ 
+
  
